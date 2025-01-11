@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .product-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .product-card h2 {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            color: #333;
+        }
+        .product-card p {
+            font-size: 1rem;
+            color: #555;
+            margin: 10px 0;
+        }
+        .product-card .price {
+            font-size: 1.2rem;
+            color: #007bff;
+            font-weight: bold;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Welcome to Our Product Page
+    </header>
+    <div class="product-container">
+        {% for i in product %}
+            <div class="product-card">
+                <img src="{{ i.img.url }}" alt="{{ i.name }}" width="250px">
+                <a href="{% url 'detail' i.name i.id %}"><h2>{{ i.name }}</h2> </a>
+                <p class="price">${{ i.price }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <footer>
+        &copy; 2024 Your Company. All rights reserved.
+    </footer>
+</body>
+</html>
